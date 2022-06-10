@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Widget.App.Button" parent="Widget.MaterialComponents.Button">
+        <item name="android:minHeight">60dp</item>
+        <item name="shapeAppearance">@style/ShapeAppearance.App.Button</item>
+        <item name="android:textAppearance">@style/TextAppearance.App.Button</item>
+        <item name="backgroundTint">?attr/colorSecondary</item>
+    </style>
+
+</resources>
