@@ -16,4 +16,7 @@ interface ProductService {
 
     @GET("highlights/MLM/category/{category_id}")
     suspend fun getItems(@Path("category_id") categoryId: String): Response<DataModel.ListItems>
+
+    @GET("items")
+    suspend fun getProducts(@Query(value = "ids", encoded = true) ids: String): Response<List<DataModel.ProductBody>>
 }

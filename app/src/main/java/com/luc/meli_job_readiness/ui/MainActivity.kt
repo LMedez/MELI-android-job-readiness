@@ -4,9 +4,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
+import com.luc.meli_job_readiness.data.repositories.NetworkResponse
 import com.luc.meli_job_readiness.databinding.ActivityMainBinding
 import com.luc.meli_job_readiness.ui.viewmodels.SearchViewModel
 import com.luc.meli_job_readiness.ui.viewmodels.SearchViewModelFactory
+import kotlin.math.log
 
 class MainActivity : AppCompatActivity() {
     private val searchViewModel: SearchViewModel by viewModels(factoryProducer = { SearchViewModelFactory() })
@@ -16,12 +18,17 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        searchViewModel.getCategory("autos").observe(this) {
-            Log.d("sometag", "onCreate: $it")
+        searchViewModel.category.postValue("samsung")
+
+        searchViewModel.productList.observe(this) {
+            Log.d("tests", it.toString())
         }
 
-        searchViewModel.getItems("MLM189372").observe(this) {
-            Log.d("sometag", "onCreate: $it")
+        searchViewModel.loadingData.observe(this) {
+            Log.d("tests", "loading data...")
+        }
+        searchViewModel.showError.observe(this) {
+            Log.d("tests", it)
         }
 
     }

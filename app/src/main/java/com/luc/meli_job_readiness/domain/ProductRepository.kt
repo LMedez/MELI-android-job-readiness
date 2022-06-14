@@ -11,4 +11,7 @@ class ProductRepository constructor(private val productDataSource: ProductDataSo
 
     suspend fun getItems(categoryId: String): NetworkResponse<List<DataModel.Item>> =
         productDataSource.getItems(categoryId)
+
+    suspend fun getProducts(ids: List<String>): NetworkResponse<List<DataModel.Product>> =
+        productDataSource.getProducts(ids)
 }
