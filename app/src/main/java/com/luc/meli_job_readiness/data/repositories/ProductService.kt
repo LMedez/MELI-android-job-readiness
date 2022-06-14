@@ -8,10 +8,12 @@ import retrofit2.http.Query
 
 interface ProductService {
 
-    @GET("sites/{country_id}/domain_discovery/search")
+    @GET("sites/MLM/domain_discovery/search")
     suspend fun getCategory(
-        @Path("country_id") siteId: String = "MLM",
         @Query("limit") limit: Int = 1,
         @Query("q") search: String
     ): Response<List<DataModel.Category>>
+
+    @GET("highlights/MLM/category/{category_id}")
+    suspend fun getItems(@Path("category_id") categoryId: String): Response<DataModel.ListItems>
 }

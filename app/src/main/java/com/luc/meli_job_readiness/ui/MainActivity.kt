@@ -16,7 +16,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        searchViewModel.getCategory("samsung").observe(this) {
+        /*searchViewModel.getCategory("samsung").observe(this) {
+            Log.d("sometag", "onCreate: $it")
+        }*/
+
+        searchViewModel.getItems("MLM1332595526").observe(this) {
             Log.d("sometag", "onCreate: $it")
         }
 

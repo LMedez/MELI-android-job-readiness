@@ -14,6 +14,12 @@ class SearchViewModel constructor(private val productRepository: ProductReposito
         if (data is NetworkResponse.Success)
             emit(data.data)
     }
+
+    fun getItems(categoryId: String) = liveData {
+        val data = productRepository.getItems(categoryId)
+        if (data is NetworkResponse.Success)
+            emit(data.data)
+    }
 }
 
 class SearchViewModelFactory : ViewModelProvider.Factory {
