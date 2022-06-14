@@ -7,16 +7,26 @@ object DataModel {
     * Product
     *
     * */
+
+    data class ProductBody(val body: Product)
+
     data class Product(
         val id: String,
         val title: String,
-        val price: Int,
+        val price: Double,
         val thumbnail: String,
+        val shipping: Shipping
+    )
 
-
+    data class Shipping(
         @SerializedName("free_shipping")
         val freeShipping: Boolean = false
     )
+
+    /*
+    * Category
+    *
+    * */
 
     data class Category(
         @SerializedName("category_id")
@@ -33,4 +43,5 @@ object DataModel {
     data class ListItems(val content: List<Item>)
 
     data class Item(val id: String, val position: Int)
+
 }

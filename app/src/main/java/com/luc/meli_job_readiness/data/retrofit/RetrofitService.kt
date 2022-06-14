@@ -10,7 +10,7 @@ object RetrofitService {
     private val client = OkHttpClient.Builder().apply {
         addInterceptor { chain ->
             val request =
-                chain.request().newBuilder().header("Authorization", "Bearer: ${BuildConfig.API_KEY}").build()
+                chain.request().newBuilder().header("Authorization", "Bearer ${BuildConfig.API_KEY}").build()
             chain.proceed(request)
         }
     }.build()
