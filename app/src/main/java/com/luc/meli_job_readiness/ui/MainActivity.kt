@@ -1,9 +1,15 @@
 package com.luc.meli_job_readiness.ui
 
+import android.app.SearchManager
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
+import androidx.appcompat.widget.SearchView
+import androidx.databinding.adapters.SearchViewBindingAdapter
+import androidx.fragment.app.commit
+import com.luc.meli_job_readiness.R
 import com.luc.meli_job_readiness.data.repositories.NetworkResponse
 import com.luc.meli_job_readiness.databinding.ActivityMainBinding
 import com.luc.meli_job_readiness.ui.adapter.ProductItemAdapter
@@ -20,7 +26,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        searchViewModel.category.postValue("samsung")
+        searchViewModel.category.postValue("intel i7")
 
         searchViewModel.productList.observe(this) {
             Log.d("tests", "entered")
@@ -31,11 +37,20 @@ class MainActivity : AppCompatActivity() {
         searchViewModel.data.observe(this) {
             Log.d("tests", it.toString())
         }
+
         searchViewModel.loadingData.observe(this) {
         }
+
         searchViewModel.showError.observe(this) {
             Log.d("tests", it)
         }
 
+        binding.searchCV.setOnClickListener {
+            supportFragmentManager.commit {
+                replace(binding.root.id, SearchFragment())
+                addToBackStack(SearchFragment().tag)
+            }
+
+        }
     }
 }

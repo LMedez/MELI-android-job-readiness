@@ -15,6 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MELIjobreadiness"
         tools:targetApi="31">
+
         <activity
             android:name=".ui.MainActivity"
             android:exported="true">
@@ -22,7 +23,9 @@
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
+
             </intent-filter>
+
         </activity>
     </application>
 

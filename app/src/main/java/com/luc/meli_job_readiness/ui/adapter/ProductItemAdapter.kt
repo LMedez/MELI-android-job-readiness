@@ -1,12 +1,17 @@
 package com.luc.meli_job_readiness.ui.adapter
 
+import android.opengl.Visibility
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnticipateInterpolator
+import android.view.animation.OvershootInterpolator
+import android.widget.ImageButton
 import androidx.recyclerview.widget.RecyclerView
 import com.luc.meli_job_readiness.R
 import com.luc.meli_job_readiness.data.model.DataModel
 import com.luc.meli_job_readiness.databinding.ProductItemBinding
+import com.luc.meli_job_readiness.ui.animation.startFavAnimation
 
 class ProductItemAdapter(private val productList: List<DataModel.Product>) :
     RecyclerView.Adapter<ProductItemAdapter.ViewHolder>() {
@@ -14,9 +19,16 @@ class ProductItemAdapter(private val productList: List<DataModel.Product>) :
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val binding = ProductItemBinding.bind(view)
         fun bind(product: DataModel.Product) = with(binding) {
-            binding.imageUrl = product.thumbnail
-            binding.itemTitleTV.text = product.title
-            binding.itemPriceTV.text = product.price.toString()
+            imageUrl = product.thumbnail
+            itemTitleTV.text = product.title
+            itemPriceTV.text = "$ ${product.price.toInt()}"
+            favIB.setOnClickListener {
+                favIB.startFavAnimation()
+            }
+            if (product.shipping.freeShipping)
+                shippingTV.visibility = View.VISIBLE
+            else shippingTV.visibility = View.INVISIBLE
+
         }
     }
 
@@ -30,4 +42,6 @@ class ProductItemAdapter(private val productList: List<DataModel.Product>) :
     }
 
     override fun getItemCount() = productList.size
+
+
 }

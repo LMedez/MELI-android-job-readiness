@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.MainActivity">
@@ -17,10 +18,10 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:elevation="9dp"
-        android:padding="8dp"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:elevation="9dp"
+        android:padding="8dp"
         app:layout_constraintBottom_toBottomOf="@+id/materialToolbar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -37,35 +38,37 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.card.MaterialCardView
-            app:shapeAppearance="@style/ShapeAppearance.App.Rounded"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
+            app:rippleColor="@android:color/transparent"
+            android:id="@+id/searchCV"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/imageButton"
             app:layout_constraintStart_toEndOf="@+id/imageButton2"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearance="@style/ShapeAppearance.App.Rounded">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/grid_1">
 
                 <ImageView
-                    android:layout_margin="8dp"
-                    android:layout_gravity="center"
-                    android:src="@drawable/ic_search"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/ic_search" />
 
-                <EditText
-                    android:textColor="@color/gray_300"
-                    android:background="@null"
-                    android:textAppearance="@style/TextAppearance.App.Subtitle"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/grid_1"
                     android:hint="@string/search_meli"
-                    android:layout_marginEnd="12dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
+                    android:textAppearance="@style/TextAppearance.App.Title" />
+
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
@@ -83,14 +86,14 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:id="@+id/itemRV"
-        tools:listitem="@layout/product_item"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/materialToolbar" />
+        app:layout_constraintTop_toBottomOf="@+id/materialToolbar"
+        tools:listitem="@layout/product_item" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
