@@ -6,19 +6,22 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.luc.meli_job_readiness.R
 import com.luc.meli_job_readiness.data.model.DataModel
-import com.luc.meli_job_readiness.databinding.SearchItemBinding
+import com.luc.meli_job_readiness.databinding.ProductItemBinding
 
-class SearchItemAdapter(private val productList: List<DataModel.Product>) : RecyclerView.Adapter<SearchItemAdapter.ViewHolder>() {
+class ProductItemAdapter(private val productList: List<DataModel.Product>) :
+    RecyclerView.Adapter<ProductItemAdapter.ViewHolder>() {
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        private val binding = SearchItemBinding.bind(view)
+        private val binding = ProductItemBinding.bind(view)
         fun bind(product: DataModel.Product) = with(binding) {
-
+            binding.imageUrl = product.thumbnail
+            binding.itemTitleTV.text = product.title
+            binding.itemPriceTV.text = product.price.toString()
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.search_item, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.product_item, parent, false)
         return ViewHolder(view)
     }
 

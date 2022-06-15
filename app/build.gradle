@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id "org.jetbrains.kotlin.kapt"
 }
 
 android {
@@ -37,6 +38,10 @@ android {
     viewBinding {
         enabled = true
     }
+
+    dataBinding {
+        enabled = true
+    }
 }
 
 dependencies {
@@ -45,6 +50,10 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.4.2'
     implementation 'com.google.android.material:material:1.6.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+
+    // Glide
+    implementation 'com.github.bumptech.glide:glide:4.13.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.13.0'
 
     //Retrofit
     implementation "com.squareup.retrofit2:retrofit:2.9.0"
