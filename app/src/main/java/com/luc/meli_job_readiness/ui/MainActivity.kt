@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        searchViewModel.category.postValue("samsung")
+        searchViewModel.category.postValue("intel i7")
 
         searchViewModel.productList.observe(this) {
             Log.d("tests", "entered")
@@ -31,11 +31,12 @@ class MainActivity : AppCompatActivity() {
         searchViewModel.data.observe(this) {
             Log.d("tests", it.toString())
         }
+
         searchViewModel.loadingData.observe(this) {
         }
+
         searchViewModel.showError.observe(this) {
             Log.d("tests", it)
         }
-
     }
 }
