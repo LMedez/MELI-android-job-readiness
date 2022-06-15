@@ -1,11 +1,14 @@
 package com.luc.meli_job_readiness.ui.viewmodels
 
+import android.util.Log
 import androidx.lifecycle.*
 import com.luc.meli_job_readiness.data.model.DataModel
 import com.luc.meli_job_readiness.data.repositories.NetworkResponse
 import com.luc.meli_job_readiness.data.repositories.ProductDataSource
 import com.luc.meli_job_readiness.domain.ProductRepository
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class SearchViewModel constructor(private val productRepository: ProductRepository) : ViewModel() {
 
@@ -24,13 +27,20 @@ class SearchViewModel constructor(private val productRepository: ProductReposito
 
     private fun getProducts(category: String) = liveData {
         _loadingData.postValue(true)
-        val result = productRepository.getCategory(category)
-        if (result is NetworkResponse.Success) {
-            val items = productRepository.getItems(result.data)
-            if (items is NetworkResponse.Success)
-                emit(productRepository.getProducts(items.data.map { it.id }))
-            else _showError.postValue("An unexpected error occurred calling api")
-        } else _showError.postValue("An unexpected error occurred calling api")
+        viewModelScope.launch {
+            val result = productRepository.getCategory(category)
+            if (result is NetworkResponse.Success) {
+                val items = productRepository.getItems(result.data)
+                if (items is NetworkResponse.Success) {
+                    val products = productRepository.getProducts(items.data.map { it.id })
+                    if (products is NetworkResponse.Success){
+                        emit(products.data)
+                        return@launch
+                    }
+                }
+            }
+            _showError.postValue("An unexpected error occurred")
+        }
     }
 }
 
