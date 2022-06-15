@@ -2,4 +2,6 @@
     <string name="app_name">MELI-job-readiness</string>
     <string name="search_meli">Buscar en Mercadolibre</string>
     <string name="free_shipping">Envio gratis</string>
+    <string name="app_label">MELI-android-job-readiness</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
