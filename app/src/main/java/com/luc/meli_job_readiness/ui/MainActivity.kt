@@ -28,6 +28,9 @@ class MainActivity : AppCompatActivity() {
             binding.itemRV.adapter = ProductItemAdapter(it)
         }
 
+        searchViewModel.data.observe(this) {
+            Log.d("tests", it.toString())
+        }
         searchViewModel.loadingData.observe(this) {
         }
         searchViewModel.showError.observe(this) {
