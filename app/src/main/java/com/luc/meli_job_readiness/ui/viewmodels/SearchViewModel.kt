@@ -21,26 +21,25 @@ class SearchViewModel constructor(private val productRepository: ProductReposito
 
     val category = MutableLiveData<String>()
 
+    val data = MutableLiveData<List<DataModel.Product>>()
+
     val productList = Transformations.switchMap(category) {
         getProducts(it)
     }
 
     private fun getProducts(category: String) = liveData {
         _loadingData.postValue(true)
-        viewModelScope.launch {
-            val result = productRepository.getCategory(category)
-            if (result is NetworkResponse.Success) {
-                val items = productRepository.getItems(result.data)
-                if (items is NetworkResponse.Success) {
-                    val products = productRepository.getProducts(items.data.map { it.id })
-                    if (products is NetworkResponse.Success){
-                        emit(products.data)
-                        return@launch
-                    }
+        val result = productRepository.getCategory(category)
+        if (result is NetworkResponse.Success) {
+            val items = productRepository.getItems(result.data)
+            if (items is NetworkResponse.Success) {
+                val products = productRepository.getProducts(items.data.map { it.id })
+                if (products is NetworkResponse.Success) {
+                    emit(products.data)
                 }
             }
-            _showError.postValue("An unexpected error occurred")
         }
+        _showError.postValue("An unexpected error occurred")
     }
 }
 
