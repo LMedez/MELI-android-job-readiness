@@ -16,7 +16,7 @@ object DataModel {
         val price: Double,
         val thumbnail: String,
         val shipping: Shipping,
-        val pictures: Picture,
+        val pictures: List<Picture>,
         @SerializedName("seller_address") val sellerAddress: SellerAddress
     )
 
@@ -24,8 +24,6 @@ object DataModel {
         @SerializedName("free_shipping")
         val freeShipping: Boolean = false
     )
-
-    data class Pictures(val pictureList: List<Picture>)
 
     data class Picture(val id: String, @SerializedName("secure_url") val secureUrl: String)
 
