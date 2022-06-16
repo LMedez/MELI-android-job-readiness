@@ -1,6 +1,5 @@
 package com.luc.meli_job_readiness.data.repositories
 
-import android.util.Log
 import com.luc.meli_job_readiness.data.model.DataModel
 import com.luc.meli_job_readiness.data.retrofit.RetrofitService
 

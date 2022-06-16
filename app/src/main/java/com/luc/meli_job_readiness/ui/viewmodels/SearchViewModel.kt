@@ -21,8 +21,6 @@ class SearchViewModel constructor(private val productRepository: ProductReposito
 
     val category = MutableLiveData<String>()
 
-    val data = MutableLiveData<List<DataModel.Product>>()
-
     val productList = Transformations.switchMap(category) {
         getProducts(it)
     }
@@ -36,6 +34,7 @@ class SearchViewModel constructor(private val productRepository: ProductReposito
                 val products = productRepository.getProducts(items.data.map { it.id })
                 if (products is NetworkResponse.Success) {
                     emit(products.data)
+                    return@liveData
                 }
             }
         }

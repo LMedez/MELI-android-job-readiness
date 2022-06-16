@@ -5,10 +5,12 @@ import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.widget.SearchView
 import androidx.databinding.adapters.SearchViewBindingAdapter
 import androidx.fragment.app.commit
+import com.google.android.material.snackbar.Snackbar
 import com.luc.meli_job_readiness.R
 import com.luc.meli_job_readiness.data.repositories.NetworkResponse
 import com.luc.meli_job_readiness.databinding.ActivityMainBinding
@@ -26,23 +28,20 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        searchViewModel.category.postValue("intel i7")
+        searchViewModel.category.postValue("notebook")
 
         searchViewModel.productList.observe(this) {
-            Log.d("tests", "entered")
-
+            binding.progressBar.visibility = View.INVISIBLE
             binding.itemRV.adapter = ProductItemAdapter(it)
         }
 
-        searchViewModel.data.observe(this) {
-            Log.d("tests", it.toString())
-        }
-
         searchViewModel.loadingData.observe(this) {
+            binding.progressBar.visibility = View.VISIBLE
         }
 
         searchViewModel.showError.observe(this) {
-            Log.d("tests", it)
+            Snackbar.make(binding.root, it, Snackbar.LENGTH_SHORT).show()
+            binding.progressBar.visibility = View.INVISIBLE
         }
 
         binding.searchCV.setOnClickListener {
@@ -50,7 +49,6 @@ class MainActivity : AppCompatActivity() {
                 replace(binding.root.id, SearchFragment())
                 addToBackStack(SearchFragment().tag)
             }
-
         }
     }
 }
