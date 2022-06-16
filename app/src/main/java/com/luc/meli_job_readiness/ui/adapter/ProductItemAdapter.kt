@@ -1,8 +1,13 @@
 package com.luc.meli_job_readiness.ui.adapter
 
+import android.opengl.Visibility
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnticipateInterpolator
+import android.view.animation.OvershootInterpolator
+import android.widget.ImageButton
 import androidx.recyclerview.widget.RecyclerView
 import com.luc.meli_job_readiness.R
 import com.luc.meli_job_readiness.data.model.DataModel

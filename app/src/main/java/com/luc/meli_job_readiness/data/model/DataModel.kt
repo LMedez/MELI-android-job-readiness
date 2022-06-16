@@ -17,6 +17,9 @@ object DataModel {
         val thumbnail: String,
         val shipping: Shipping,
         val pictures: List<Picture>,
+        val condition: String,
+        val variations: List<Variation>,
+        @SerializedName("sold_quantity") val soldQuantity: Double,
         @SerializedName("seller_address") val sellerAddress: SellerAddress
     )
 
@@ -24,6 +27,10 @@ object DataModel {
         @SerializedName("free_shipping")
         val freeShipping: Boolean = false
     )
+
+    data class Variation(@SerializedName("attribute_combinations") val attribute: List<Attribute>)
+
+    data class Attribute(val id: String, @SerializedName("value_name") val valueName: String)
 
     data class Picture(val id: String, @SerializedName("secure_url") val secureUrl: String)
 
