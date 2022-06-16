@@ -18,10 +18,26 @@ object DataModel {
         val shipping: Shipping,
         val pictures: List<Picture>,
         val condition: String,
-        val variations: List<Variation>,
+        private val variations: List<Variation>,
         @SerializedName("sold_quantity") val soldQuantity: Double,
-        @SerializedName("seller_address") val sellerAddress: SellerAddress
-    )
+        @SerializedName("seller_address") private val sellerAddress: SellerAddress
+    ) {
+        val productLocation: String
+            get() {
+                return if (sellerAddress.searchLocation.city.name == sellerAddress.searchLocation.state.name)
+                    sellerAddress.searchLocation.city.name
+                else "${sellerAddress.searchLocation.city.name}, ${sellerAddress.searchLocation.state.name}"
+            }
+
+        val colorVariation: String
+            get() {
+                return if (variations.isNotEmpty()) {
+                    val colorVariations =
+                        variations.map { variation -> variation.attribute.filter { it.id == "COLOR" } }
+                    if (colorVariations.size > 1) "Disponible en ${colorVariations.size} colores" else ""
+                } else ""
+            }
+    }
 
     data class Shipping(
         @SerializedName("free_shipping")
