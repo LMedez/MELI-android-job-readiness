@@ -26,10 +26,13 @@ class ProductDataSource {
     suspend fun getProducts(ids: List<String>): NetworkResponse<List<DataModel.Product>> {
         return try {
             val response = retrofitInstance.getProducts(ids.joinToString(","))
-            NetworkResponse.Success(response.body()?.map { it.body } ?: listOf())
+            val data = response.body()?.map { it.body } ?: listOf()
+            data[0].title?.let {
+                return NetworkResponse.Success(response.body()?.map { it.body } ?: listOf())
+            }
+            NetworkResponse.Error(null, "The fields of Product are null")
         } catch (e: Exception) {
             NetworkResponse.Error(e, e.message ?: "An unexpected error occurred")
         }
     }
-
 }
