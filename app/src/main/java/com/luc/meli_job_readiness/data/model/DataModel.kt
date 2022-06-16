@@ -1,6 +1,7 @@
 package com.luc.meli_job_readiness.data.model
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 object DataModel {
     /*
@@ -8,7 +9,7 @@ object DataModel {
     *
     * */
 
-    data class ProductBody(val body: Product)
+    data class ProductBody(val body: Product): Serializable
 
     data class Product(
         val id: String,
@@ -21,7 +22,7 @@ object DataModel {
         private val variations: List<Variation>,
         @SerializedName("sold_quantity") val soldQuantity: Double,
         @SerializedName("seller_address") private val sellerAddress: SellerAddress
-    ) {
+    ) : Serializable {
         val productLocation: String
             get() {
                 return if (sellerAddress.searchLocation.city.name == sellerAddress.searchLocation.state.name)
@@ -42,19 +43,19 @@ object DataModel {
     data class Shipping(
         @SerializedName("free_shipping")
         val freeShipping: Boolean = false
-    )
+    ): Serializable
 
-    data class Variation(@SerializedName("attribute_combinations") val attribute: List<Attribute>)
+    data class Variation(@SerializedName("attribute_combinations") val attribute: List<Attribute>): Serializable
 
-    data class Attribute(val id: String, @SerializedName("value_name") val valueName: String)
+    data class Attribute(val id: String, @SerializedName("value_name") val valueName: String): Serializable
 
-    data class Picture(val id: String, @SerializedName("secure_url") val secureUrl: String)
+    data class Picture(val id: String, @SerializedName("secure_url") val secureUrl: String): Serializable
 
-    data class SearchLocation(val city: Location, val state: Location)
+    data class SearchLocation(val city: Location, val state: Location): Serializable
 
-    data class SellerAddress(@SerializedName("search_location") val searchLocation: SearchLocation)
+    data class SellerAddress(@SerializedName("search_location") val searchLocation: SearchLocation): Serializable
 
-    data class Location(val name: String)
+    data class Location(val name: String): Serializable
 
 
     /*
