@@ -1,6 +1,7 @@
 package com.luc.meli_job_readiness.ui.adapter
 
 import android.opengl.Visibility
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -25,6 +26,8 @@ class ProductItemAdapter(private val productList: List<DataModel.Product>) :
             favIB.setOnClickListener {
                 favIB.startFavAnimation()
             }
+
+            Log.d("tests", "bind: ${product.pictures}")
             if (product.shipping.freeShipping)
                 shippingTV.visibility = View.VISIBLE
             else shippingTV.visibility = View.INVISIBLE
@@ -42,6 +45,5 @@ class ProductItemAdapter(private val productList: List<DataModel.Product>) :
     }
 
     override fun getItemCount() = productList.size
-
 
 }
