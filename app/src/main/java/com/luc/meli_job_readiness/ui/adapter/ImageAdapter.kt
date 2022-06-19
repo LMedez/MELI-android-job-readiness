@@ -13,6 +13,9 @@ import com.luc.meli_job_readiness.R
 import com.luc.meli_job_readiness.databinding.ImageItemBinding
 import com.luc.meli_job_readiness.databinding.ProductItemBinding
 
+/**
+ * PagerAdapter for the ViewPager in the ProductDetailActivity
+ */
 class ImageAdapter(private val imageList: List<String>) : PagerAdapter() {
 
     private lateinit var layoutInflater: LayoutInflater
@@ -21,6 +24,9 @@ class ImageAdapter(private val imageList: List<String>) : PagerAdapter() {
 
     override fun isViewFromObject(view: View, object1: Any) = view == object1
 
+    /**
+     * Inflate a layout resource with the image and bind the imageUrl with the correct image url
+     */
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
         layoutInflater = container.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val view = layoutInflater.inflate(R.layout.image_item,container, false)

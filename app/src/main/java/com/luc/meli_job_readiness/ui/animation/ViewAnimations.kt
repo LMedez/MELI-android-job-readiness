@@ -19,7 +19,6 @@ private fun scaleXY(
 }
 
 fun ImageButton.startFavAnimation() {
-
     if (this.scaleX == 0f) scaleXY(this, 1f, OvershootInterpolator(3f))
     else scaleXY(this, 0f, AnticipateInterpolator(3f))
 }
