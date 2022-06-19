@@ -4,11 +4,11 @@ import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
 object DataModel {
-    /*
+
+    /**
     * Product
     *
     * */
-
     data class ProductBody(val body: Product): Serializable
 
     data class Product(
@@ -58,7 +58,7 @@ object DataModel {
     data class Location(val name: String): Serializable
 
 
-    /*
+    /**
     * Category
     *
     * */
@@ -70,7 +70,7 @@ object DataModel {
         val categoryName: String
     )
 
-    /*
+    /**
     * Items
     *
     * */
