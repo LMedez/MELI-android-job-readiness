@@ -1,30 +1,42 @@
 package com.luc.meli_job_readiness.ui.viewmodels
 
-import android.util.Log
 import androidx.lifecycle.*
-import com.luc.meli_job_readiness.data.model.DataModel
 import com.luc.meli_job_readiness.data.repositories.NetworkResponse
 import com.luc.meli_job_readiness.data.repositories.ProductDataSource
 import com.luc.meli_job_readiness.domain.ProductRepository
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-
 class SearchViewModel constructor(private val productRepository: ProductRepository) : ViewModel() {
 
-
+    /**
+     * Live data that fire a error message when an error occurs in the Repository calls.
+     * Is observed in the MainActivity.
+     */
     private val _showError = MutableLiveData<String>()
     val showError: LiveData<String> = _showError
 
+    /**
+     * Live data that shows a boolean if data is loading from Repository.
+     * Is observed in the MainActivity.
+     */
     private val _loadingData = MutableLiveData<Boolean>()
     val loadingData: LiveData<Boolean> = _loadingData
 
+    /**
+     * Mutable live data that is modify by the query of a EditText in the SearchFragment
+     */
     val category = MutableLiveData<String>()
 
+    /**
+     * Live data that respond to changes on category and emit a new list of Product
+     * with the corresponding category id
+     */
     val productList = Transformations.switchMap(category) {
         getProducts(it)
     }
 
+    /**
+     * Get the products calling the Repository methods
+     * Emit a Live data with a list of products or show an error if the case
+     */
     private fun getProducts(category: String) = liveData {
         _loadingData.postValue(true)
         val result = productRepository.getCategory(category)
@@ -42,8 +54,12 @@ class SearchViewModel constructor(private val productRepository: ProductReposito
     }
 }
 
+/**
+ * Factory to create an instance of this ViewModel with a Repository as parameter
+ */
 class SearchViewModelFactory : ViewModelProvider.Factory {
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return SearchViewModel(ProductRepository(ProductDataSource())) as T
     }
 }
+

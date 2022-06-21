@@ -7,6 +7,10 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitService {
+
+    /**
+     * Add an interceptor in the Retrofit instance to add an authorization header with the token in all API query
+     */
     private val client = OkHttpClient.Builder().apply {
         addInterceptor { chain ->
             val request =
@@ -15,6 +19,9 @@ object RetrofitService {
         }
     }.build()
 
+    /**
+     * Create an instance of Retrofit
+     */
     val instance: ProductService =
         Retrofit.Builder()
             .baseUrl(BuildConfig.API_BASE_URL)

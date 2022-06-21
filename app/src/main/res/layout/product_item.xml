@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
         <variable
             name="imageUrl"
             type="String" />
@@ -29,37 +28,36 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
-                android:src="@drawable/ic_launcher_background"
                 app:srcUrl="@{imageUrl}" />
 
             <com.google.android.material.card.MaterialCardView
-                android:layout_margin="@dimen/grid_1"
-                android:layout_gravity="end"
-                android:alpha="0.8"
-                app:shapeAppearanceOverlay="@style/ShapeAppearance.App.Rounded"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_margin="@dimen/grid_1"
+                android:alpha="0.8"
+                app:shapeAppearanceOverlay="@style/ShapeAppearance.App.Rounded">
 
                 <ImageButton
-                    android:layout_margin="@dimen/grid_0_5"
-                    android:layout_gravity="center"
-                    android:background="?attr/selectableItemBackgroundBorderless"
-                    app:tint="?attr/colorSecondary"
-                    android:src="@drawable/ic_favorite"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="@dimen/grid_0_5"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:src="@drawable/ic_favorite"
+                    app:tint="?attr/colorSecondary" />
 
                 <ImageButton
                     android:id="@+id/favIB"
-                    android:scaleY="0"
-                    android:scaleX="0"
-                    android:layout_margin="@dimen/grid_0_5"
-                    android:layout_gravity="center"
-                    android:background="?attr/selectableItemBackgroundBorderless"
-                    app:tint="?attr/colorSecondary"
-                    android:src="@drawable/ic_favorite_fill"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="@dimen/grid_0_5"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:scaleX="0"
+                    android:scaleY="0"
+                    android:src="@drawable/ic_favorite_fill"
+                    app:tint="?attr/colorSecondary" />
             </com.google.android.material.card.MaterialCardView>
         </FrameLayout>
 
@@ -88,14 +86,16 @@
                 android:textAppearance="@style/TextAppearance.App.Price" />
 
             <TextView
-                android:id="@+id/itemDescriptionTV"
+                android:id="@+id/shippingTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/grid_0_5"
-                android:text="@string/app_name"
-                android:textAppearance="@style/TextAppearance.App.Subtitle2" />
+                android:text="@string/free_shipping"
+                android:textAppearance="@style/TextAppearance.App.Title2"
+                android:textColor="@color/green_200"
+                android:visibility="gone" />
 
             <TextView
+                android:layout_marginTop="@dimen/grid_0_5"
                 android:id="@+id/itemLocationTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -103,14 +103,12 @@
                 android:textAppearance="@style/TextAppearance.App.Subtitle2" />
 
             <TextView
-                android:id="@+id/shippingTV"
+                android:id="@+id/itemDescriptionTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/grid_0_5"
-                android:text="@string/free_shipping"
-                android:textAppearance="@style/TextAppearance.App.Title2"
-                android:textColor="@color/green_200"
-                android:visibility="invisible" />
+                android:layout_marginBottom="@dimen/grid_0_5"
+                android:text="@string/app_name"
+                android:textAppearance="@style/TextAppearance.App.Subtitle2" />
         </LinearLayout>
 
         <View
@@ -120,6 +118,5 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

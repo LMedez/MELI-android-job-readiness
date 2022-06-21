@@ -1,21 +1,21 @@
 package com.luc.meli_job_readiness.ui.adapter
 
-import android.graphics.drawable.Drawable
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.bitmap.BitmapTransitionOptions
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
+import com.luc.meli_job_readiness.R
 
-@BindingAdapter("srcUrl", "circleCrop", "placeholder", requireAll = false)
+/**
+ * Bind any ImageView with these properties for load images url with Glide
+ */
+@BindingAdapter("srcUrl", "circleCrop", requireAll = false)
 fun ImageView.bindSrcUrl(
     url: String?,
     circleCrop: Boolean,
-    placeholder: Drawable?,
 ) {
     if (url.isNullOrEmpty()) return
     val request = Glide.with(this).load(url)
     if (circleCrop) request.circleCrop()
-    if (placeholder != null) request.placeholder(placeholder)
+    request.placeholder(context.getDrawable(R.mipmap.ic_logo_foreground))
     request.into(this)
 }
