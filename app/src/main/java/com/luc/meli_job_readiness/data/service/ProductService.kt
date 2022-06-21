@@ -1,4 +1,4 @@
-package com.luc.meli_job_readiness.data.repositories
+package com.luc.meli_job_readiness.data.service
 
 import com.luc.meli_job_readiness.data.model.DataModel
 import retrofit2.Response

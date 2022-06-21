@@ -1,10 +1,17 @@
 package com.luc.meli_job_readiness.ui.viewmodels
 
+import android.content.Context
 import androidx.lifecycle.*
-import com.luc.meli_job_readiness.data.repositories.NetworkResponse
-import com.luc.meli_job_readiness.data.repositories.ProductDataSource
+import com.luc.meli_job_readiness.data.service.LocalStorageService
+import com.luc.meli_job_readiness.data.service.NetworkResponse
+import com.luc.meli_job_readiness.data.service.ProductServiceImpl
 import com.luc.meli_job_readiness.domain.ProductRepository
-class SearchViewModel constructor(private val productRepository: ProductRepository) : ViewModel() {
+import com.luc.meli_job_readiness.domain.SearchRepository
+
+class SearchViewModel constructor(
+    private val productRepository: ProductRepository,
+    private val searchRepository: SearchRepository
+) : ViewModel() {
 
     /**
      * Live data that fire a error message when an error occurs in the Repository calls.
@@ -52,14 +59,28 @@ class SearchViewModel constructor(private val productRepository: ProductReposito
         }
         _showError.postValue("An unexpected error occurred")
     }
+
+    /**
+     * Get the list of searched items by the user
+     * Returns a list of user queries
+     */
+    fun getUserSearchList() = searchRepository.getUserSearch()?.toList() ?: listOf()
+
+    /**
+     * Save the user query search in local
+     */
+    fun saveUserSearch(query: String) = searchRepository.saveUserSearch(query)
 }
 
 /**
  * Factory to create an instance of this ViewModel with a Repository as parameter
  */
-class SearchViewModelFactory : ViewModelProvider.Factory {
+class SearchViewModelFactory(private val context: Context) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return SearchViewModel(ProductRepository(ProductDataSource())) as T
+        return SearchViewModel(
+            ProductRepository(ProductServiceImpl()),
+            SearchRepository(LocalStorageService(context))
+        ) as T
     }
 }
 

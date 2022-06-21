@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        app:tint="@color/gray_300"
+        android:id="@+id/imageView"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:layout_margin="@dimen/grid_2"
+        android:src="@drawable/ic_access_time"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:text="@string/seller"
+        android:textAppearance="@style/TextAppearance.App.Subtitle"
+        android:layout_marginStart="@dimen/grid_3"
+        android:id="@+id/searchTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/imageView" />
+
+    <ImageView
+        app:tint="@color/gray_300"
+        android:id="@+id/anchorBT"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_margin="@dimen/grid_2"
+        android:src="@drawable/ic_anchor"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
