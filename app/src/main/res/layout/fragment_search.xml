@@ -46,4 +46,14 @@
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
+
+    <ListView
+        android:dividerHeight="1px"
+        android:clipToPadding="false"
+        android:overScrollFooter="@android:color/transparent"
+        android:footerDividersEnabled="false"
+        tools:listitem="@layout/search_item"
+        android:id="@+id/searchLV"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 </LinearLayout>

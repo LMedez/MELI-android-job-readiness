@@ -1,12 +1,12 @@
-package com.luc.meli_job_readiness.data.repositories
+package com.luc.meli_job_readiness.data.service
 
 import com.luc.meli_job_readiness.data.model.DataModel
-import com.luc.meli_job_readiness.data.retrofit.RetrofitService
+import com.luc.meli_job_readiness.data.source.Retrofit
 
-class ProductDataSource {
+class ProductServiceImpl {
 
     // Getting instance of retrofit
-    private val retrofitInstance = RetrofitService.instance
+    private val retrofitInstance = Retrofit.instance
 
     /**
      * Get the id of the first category by the query.

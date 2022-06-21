@@ -19,11 +19,11 @@ import kotlin.math.roundToInt
 class MainActivity : AppCompatActivity() {
 
     companion object {
-        const val PRODUCT = "product"
+        const val PRODUCT = "PRODUCT"
     }
 
     // Create an instance of the SearchViewModel and pass the factory as parameter
-    private val searchViewModel: SearchViewModel by viewModels(factoryProducer = { SearchViewModelFactory() })
+    private val searchViewModel: SearchViewModel by viewModels(factoryProducer = { SearchViewModelFactory(this) })
 
     // ViewBinding variable
     private lateinit var binding: ActivityMainBinding

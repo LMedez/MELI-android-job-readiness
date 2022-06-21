@@ -2,23 +2,20 @@ package com.luc.meli_job_readiness.ui
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
-import androidx.databinding.adapters.SearchViewBindingAdapter
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.activityViewModels
-import androidx.transition.Fade
 import com.google.android.material.snackbar.Snackbar
-import com.google.android.material.transition.MaterialFade
 import com.google.android.material.transition.MaterialSharedAxis
 import com.luc.meli_job_readiness.R
 import com.luc.meli_job_readiness.databinding.FragmentSearchBinding
+import com.luc.meli_job_readiness.ui.adapter.SearchListAdapter
 import com.luc.meli_job_readiness.ui.viewmodels.SearchViewModel
 
 class SearchFragment : Fragment() {
@@ -53,9 +50,22 @@ class SearchFragment : Fragment() {
             popBackStack()
         }
 
+        /*
+         * Set the adapter of list view and pass the list of user queries and
+         * two lambdas on constructor for handle items click event
+         */
+        binding.searchLV.adapter =
+            SearchListAdapter(requireContext(), searchViewModel.getUserSearchList(), onAnchorClick =  {
+                binding.searchSV.setText(it)
+            }, onItemClick = {
+                searchViewModel.category.postValue(it)
+                popBackStack()
+            })
+
         // Set the category in the ViewModel with the query from the search view and return to MainActivity
         binding.searchSV.onSubmit {
             if (checkQuery(it)) {
+                searchViewModel.saveUserSearch(it)
                 searchViewModel.category.postValue(it)
                 popBackStack()
             } else Snackbar.make(binding.root, getString(R.string.query_check), Snackbar.LENGTH_SHORT).show()

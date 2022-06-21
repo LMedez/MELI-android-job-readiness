@@ -1,12 +1,12 @@
-package com.luc.meli_job_readiness.data.retrofit
+package com.luc.meli_job_readiness.data.source
 
 import com.luc.meli_job_readiness.BuildConfig
-import com.luc.meli_job_readiness.data.repositories.ProductService
+import com.luc.meli_job_readiness.data.service.ProductService
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-object RetrofitService {
+object Retrofit {
 
     /**
      * Add an interceptor in the Retrofit instance to add an authorization header with the token in all API query
