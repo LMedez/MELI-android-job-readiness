@@ -1,5 +1,6 @@
 package com.luc.meli_job_readiness.data.service
 
+import android.util.Log
 import com.luc.meli_job_readiness.data.model.DataModel
 import com.luc.meli_job_readiness.data.source.Retrofit
 
@@ -45,28 +46,16 @@ class ProductServiceImpl {
         return try {
             val response = retrofitInstance.getProducts(ids.joinToString(","))
             if (response.isSuccessful) {
-                val description = retrofitInstance.getProductDescription(ids.map { "$it/description" }.joinToString { "," })
+                val description = retrofitInstance.getProductDescription(ids.joinToString { "$it/description" })
                 if (description.isSuccessful) {
                     val data = response.body()?.map { it.body } ?: listOf()
-                    data.forEachIndexed { index, product -> product.description = description.body()?.get(index)?.description?: "" }
-                    NetworkResponse.Success(data)
+                    data.forEachIndexed { index, product ->
+                        product.description = description.body()?.get(index)?.body?.description ?: ""
+                    }
+                    return NetworkResponse.Success(data)
                 }
             }
-          /*  val data = response.body()?.map { it.body } ?: listOf()
-            data[0].title?.let {
-                return NetworkResponse.Success(response.body()?.map { it.body } ?: listOf())
-            }*/
             NetworkResponse.Error(null, "The fields of Product are null")
-
-        } catch (e: Exception) {
-            NetworkResponse.Error(e, e.message ?: "An unexpected error occurred")
-        }
-    }
-
-    suspend fun getProductDescription(id: String): NetworkResponse<String> {
-        return try {
-            val response = retrofitInstance.getProductDescription("$id/description")
-            NetworkResponse.Success(response.body()?.first()?.description ?: "No description")
         } catch (e: Exception) {
             NetworkResponse.Error(e, e.message ?: "An unexpected error occurred")
         }

@@ -2,6 +2,7 @@ package com.luc.meli_job_readiness.ui
 
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuItem
 import android.view.Window
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
@@ -46,7 +47,7 @@ class ProductDetailActivity : AppCompatActivity() {
         with(binding) {
             productPriceTV.text = "$ ${product.price.toCurrencyPrice()}"
             productTitleTV.text = product.title
-            //descriptionTV.text = product.description
+            descriptionTV.text = product.description
             sellerQuantityTV.text =
                 if (product.condition == "new") "${getString(R.string.neww)} | ${product.soldQuantity.toInt()} ${getString(R.string.sell)}"
                 else "${getString(R.string.used)} | ${product.soldQuantity.toInt()} ${getString(R.string.sell)}"
@@ -97,5 +98,12 @@ class ProductDetailActivity : AppCompatActivity() {
         override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {}
         override fun onPageSelected(position: Int) { binding.imageCountCH.text = "${position + 1} / $pictureSize" }
         override fun onPageScrollStateChanged(state: Int) {}
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId) {
+            android.R.id.home -> onBackPressed()
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

@@ -14,10 +14,7 @@ interface ProductService {
      * Returns a Retrofit Response with a list of Categories.
      */
     @GET("sites/MLA/domain_discovery/search")
-    suspend fun getCategory(
-        @Query("limit") limit: Int = 1,
-        @Query("q") query: String
-    ): Response<List<DataModel.Category>>
+    suspend fun getCategory(@Query("limit") limit: Int = 1, @Query("q") query: String): Response<List<DataModel.Category>>
 
     /**
      * Get a list of Items by Category id from API.
@@ -29,12 +26,17 @@ interface ProductService {
 
     /**
      * Get a list of products from API.
-     * Params: the list of items ids as String
+     * Params: a list of items ids as String
      * Returns a Retrofit Response with a list of ProductBody objects.
      */
     @GET("items")
-    suspend fun getProducts(@Query(value = "ids", encoded = true) ids: String): Response<List<DataModel.ProductBody>>
+    suspend fun getProducts(@Query(value = "ids") ids: String): Response<List<DataModel.ProductBody>>
 
+    /**
+     * Get the description of all products
+     * Params: a list of items ids as String
+     * Returns a Retrofit Response with a list of ProductDescriptionBody objects
+     */
     @GET("items")
-    suspend fun getProductDescription(@Query(value = "ids", encoded = true) itemIds: String): Response<List<DataModel.ProductDescription>>
+    suspend fun getProductDescription(@Query(value = "ids") itemIds: String): Response<List<DataModel.ProductDescriptionBody>>
 }
