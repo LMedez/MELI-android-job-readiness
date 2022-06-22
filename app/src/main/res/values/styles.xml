@@ -2,9 +2,17 @@
 <resources>
     <style name="Widget.App.Button" parent="Widget.MaterialComponents.Button">
         <item name="android:minHeight">60dp</item>
+        <item name="materialThemeOverlay">@style/ThemeOverlay.App.Button</item>
         <item name="shapeAppearance">@style/ShapeAppearance.App.Button</item>
         <item name="android:textAppearance">@style/TextAppearance.App.Button</item>
         <item name="backgroundTint">?attr/colorSecondary</item>
     </style>
+
+    <style name="Widget.App.Button.Text" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="android:minHeight">60dp</item>
+        <item name="shapeAppearance">@style/ShapeAppearance.App.Button</item>
+        <item name="android:textAppearance">@style/TextAppearance.App.Subtitle</item>
+    </style>
+
 
 </resources>

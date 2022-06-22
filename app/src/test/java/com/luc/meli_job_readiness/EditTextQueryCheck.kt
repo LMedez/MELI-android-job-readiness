@@ -34,7 +34,7 @@ class EditTextQueryCheck {
     }
 
     @Test
-    fun `query starts with a white space, return false`() {
+    fun `query start with a white space, return false`() {
         val query = " books"
         val result = fragmentSearch.checkQuery(query)
         assertEquals(result,false)

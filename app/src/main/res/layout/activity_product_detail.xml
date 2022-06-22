@@ -128,17 +128,19 @@
                 app:layout_constraintTop_toBottomOf="@+id/productPriceTV">
 
                 <com.google.android.material.button.MaterialButton
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/grid_1"
                     android:layout_weight="1"
                     android:text="@string/ask" />
 
                 <com.google.android.material.button.MaterialButton
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/whatsapp" />
+                    android:text="@string/whatsapp"
+                    app:icon="@drawable/ic_attach"
+                    app:iconGravity="textStart" />
             </LinearLayout>
 
             <LinearLayout
@@ -150,42 +152,35 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/grid_1"
-                    android:src="@drawable/ic_favorite"
-                    app:tint="?attr/colorSecondary" />
-
-                <TextView
-                    android:layout_width="wrap_content"
+                <com.google.android.material.button.MaterialButton
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    style="@style/Widget.App.Button.Text"
+                    app:iconGravity="textStart"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="Agregar a favoritos"
-                    android:textAppearance="@style/TextAppearance.App.Subtitle"
-                    android:textColor="?attr/colorSecondary" />
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/grid_4"
-                    android:src="@drawable/ic_share"
+                    app:icon="@drawable/ic_favorite"
                     app:tint="?attr/colorSecondary" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                <com.google.android.material.button.MaterialButton
                     android:layout_gravity="center"
-                    android:layout_marginStart="@dimen/grid_1"
+                    android:layout_weight="1"
+                    style="@style/Widget.App.Button.Text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
                     android:text="Compartir"
-                    android:textAppearance="@style/TextAppearance.App.Subtitle"
-                    android:textColor="?attr/colorSecondary" />
+                    app:icon="@drawable/ic_share"
+                    app:iconGravity="textStart"
+                    app:tint="?attr/colorSecondary" />
+
             </LinearLayout>
 
             <TextView
-                android:layout_marginTop="@dimen/grid_3"
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/grid_3"
                 android:text="@string/description"
                 android:textAppearance="@style/TextAppearance.App.Title"
                 app:layout_constraintStart_toStartOf="parent"
@@ -193,9 +188,9 @@
 
             <TextView
                 android:id="@+id/descriptionTV"
-                android:layout_marginTop="@dimen/grid_3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/grid_3"
                 android:text="@string/lorem"
                 android:textAppearance="@style/TextAppearance.App.Subtitle"
                 app:layout_constraintStart_toStartOf="parent"

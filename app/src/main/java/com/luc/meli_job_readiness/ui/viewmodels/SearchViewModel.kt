@@ -57,7 +57,7 @@ class SearchViewModel constructor(
                 }
             }
         }
-        _showError.postValue("An unexpected error occurred")
+        _showError.postValue("An unexpected error occurred, please try search again")
     }
 
     /**

@@ -1,6 +1,5 @@
 package com.luc.meli_job_readiness.data.service
 
-import android.util.Log
 import com.luc.meli_job_readiness.data.model.DataModel
 import com.luc.meli_job_readiness.data.source.Retrofit
 
@@ -38,7 +37,7 @@ class ProductServiceImpl {
     }
 
     /**
-     * Get a list of Product
+     * Get a list of Product and makes an extra query to get the product description
      * Params: list of String with the Item id
      * Returns a NetworkStatus.Success object with a list of Product, or a NetworkStatus.Error in case of any exception
      */
