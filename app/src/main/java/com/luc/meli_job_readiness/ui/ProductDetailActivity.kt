@@ -46,6 +46,7 @@ class ProductDetailActivity : AppCompatActivity() {
         with(binding) {
             productPriceTV.text = "$ ${product.price.toCurrencyPrice()}"
             productTitleTV.text = product.title
+            //descriptionTV.text = product.description
             sellerQuantityTV.text =
                 if (product.condition == "new") "${getString(R.string.neww)} | ${product.soldQuantity.toInt()} ${getString(R.string.sell)}"
                 else "${getString(R.string.used)} | ${product.soldQuantity.toInt()} ${getString(R.string.sell)}"
