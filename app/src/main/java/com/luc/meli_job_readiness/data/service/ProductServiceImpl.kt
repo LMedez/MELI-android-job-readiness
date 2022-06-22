@@ -1,5 +1,6 @@
 package com.luc.meli_job_readiness.data.service
 
+import android.util.Log
 import com.luc.meli_job_readiness.data.model.DataModel
 import com.luc.meli_job_readiness.data.source.Retrofit
 
@@ -44,8 +45,17 @@ class ProductServiceImpl {
     suspend fun getProducts(ids: List<String>): NetworkResponse<List<DataModel.Product>> {
         return try {
             val response = retrofitInstance.getProducts(ids.joinToString(","))
-            val data = response.body()?.map { it.body } ?: listOf()
-            NetworkResponse.Success(data)
+            if (response.isSuccessful) {
+                val description = retrofitInstance.getProductDescription(ids.joinToString { "$it/description" })
+                if (description.isSuccessful) {
+                    val data = response.body()?.map { it.body } ?: listOf()
+                    data.forEachIndexed { index, product ->
+                        product.description = description.body()?.get(index)?.body?.description ?: ""
+                    }
+                    return NetworkResponse.Success(data)
+                }
+            }
+            NetworkResponse.Error(null, "The fields of Product are null")
         } catch (e: Exception) {
             NetworkResponse.Error(e, e.message ?: "An unexpected error occurred")
         }
