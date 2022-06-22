@@ -11,12 +11,15 @@ object DataModel {
     * */
     data class ProductBody(val body: Product): Serializable
 
+    data class ProductDescriptionBody(val body: ProductDescription): Serializable
+
     data class Product(
         val id: String,
         val title: String,
         val price: Double,
         val thumbnail: String,
         val shipping: Shipping,
+        var description: String,
         val pictures: List<Picture>,
         val condition: String,
         private val variations: List<Variation>,
@@ -44,6 +47,8 @@ object DataModel {
         @SerializedName("free_shipping")
         val freeShipping: Boolean = false
     ): Serializable
+
+    data class ProductDescription(@SerializedName("plain_text") val description: String): Serializable
 
     data class Variation(@SerializedName("attribute_combinations") val attribute: List<Attribute>): Serializable
 

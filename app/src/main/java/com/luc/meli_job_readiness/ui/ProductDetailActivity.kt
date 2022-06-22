@@ -47,24 +47,15 @@ class ProductDetailActivity : AppCompatActivity() {
             productPriceTV.text = "$ ${product.price.toCurrencyPrice()}"
             productTitleTV.text = product.title
             sellerQuantityTV.text =
-                if (product.condition == "new") "${getString(R.string.neww)} | ${product.soldQuantity.toInt()} ${
-                    getString(
-                        R.string.sell
-                    )
-                }"
+                if (product.condition == "new") "${getString(R.string.neww)} | ${product.soldQuantity.toInt()} ${getString(R.string.sell)}"
                 else "${getString(R.string.used)} | ${product.soldQuantity.toInt()} ${getString(R.string.sell)}"
 
             imageCountCH.text = "1 / ${product.pictures.size}"
             imagesVP.adapter = ImageAdapter(product.pictures.map { it.secureUrl })
 
             // Change the text of the chip with the current position when user change the page in the image viewpager
-            imagesVP.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
-                override fun onPageScrollStateChanged(state: Int) {}
-                override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {}
-                override fun onPageSelected(position: Int) {
-                    binding.imageCountCH.text = "${position + 1} / ${product.pictures.size}"
-                }
-            })
+            imagesVP.addOnPageChangeListener(onPageChangeListener(product.pictures.size))
+
         }
     }
 
@@ -96,5 +87,14 @@ class ProductDetailActivity : AppCompatActivity() {
             excludeTarget(android.R.id.statusBarBackground, true)
             excludeTarget(android.R.id.navigationBarBackground, true)
         }
+    }
+
+    /**
+     * Page Listener that changes the current position and count of images in the image viewpager
+     */
+    private fun onPageChangeListener(pictureSize: Int) = object : ViewPager.OnPageChangeListener {
+        override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {}
+        override fun onPageSelected(position: Int) { binding.imageCountCH.text = "${position + 1} / $pictureSize" }
+        override fun onPageScrollStateChanged(state: Int) {}
     }
 }

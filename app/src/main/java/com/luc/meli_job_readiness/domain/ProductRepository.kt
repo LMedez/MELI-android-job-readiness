@@ -23,4 +23,8 @@ class ProductRepository constructor(private val productServiceImpl: ProductServi
      */
     suspend fun getProducts(ids: List<String>): NetworkResponse<List<DataModel.Product>> =
         productServiceImpl.getProducts(ids)
+
+    suspend fun getProductDescription(id: String): NetworkResponse<String> =
+        productServiceImpl.getProductDescription(id)
+
 }

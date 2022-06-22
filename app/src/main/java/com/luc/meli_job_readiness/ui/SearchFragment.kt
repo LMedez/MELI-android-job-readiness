@@ -99,7 +99,6 @@ class SearchFragment : Fragment() {
             && !query.startsWith(" ")
             && !query.endsWith(" ")
 
-
     /**
      * Extension function that show the keyboard and set the current focus to the edit text
      */

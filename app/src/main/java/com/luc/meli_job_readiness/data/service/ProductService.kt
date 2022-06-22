@@ -34,4 +34,7 @@ interface ProductService {
      */
     @GET("items")
     suspend fun getProducts(@Query(value = "ids", encoded = true) ids: String): Response<List<DataModel.ProductBody>>
+
+    @GET("items")
+    suspend fun getProductDescription(@Query(value = "ids", encoded = true) itemIds: String): Response<List<DataModel.ProductDescription>>
 }
