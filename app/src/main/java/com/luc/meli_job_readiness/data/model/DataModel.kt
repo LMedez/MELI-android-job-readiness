@@ -77,6 +77,6 @@ object DataModel {
 
     data class ListItems(val content: List<Item>)
 
-    data class Item(val id: String, val position: Int)
+    data class Item(val id: String, val position: Int, val type:String)
 
 }

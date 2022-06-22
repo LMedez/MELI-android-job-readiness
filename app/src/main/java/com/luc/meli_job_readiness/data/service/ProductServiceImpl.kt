@@ -30,7 +30,7 @@ class ProductServiceImpl {
     suspend fun getItems(categoryId: String): NetworkResponse<List<DataModel.Item>> {
         return try {
             val response = retrofitInstance.getItems(categoryId)
-            NetworkResponse.Success(response.body()?.content ?: listOf())
+            NetworkResponse.Success(response.body()?.content?.filter { it.type == "ITEM" } ?: listOf())
         } catch (e: Exception) {
             NetworkResponse.Error(e, e.message ?: "An unexpected error occurred")
         }
@@ -45,10 +45,7 @@ class ProductServiceImpl {
         return try {
             val response = retrofitInstance.getProducts(ids.joinToString(","))
             val data = response.body()?.map { it.body } ?: listOf()
-            data[0].title?.let {
-                return NetworkResponse.Success(response.body()?.map { it.body } ?: listOf())
-            }
-            NetworkResponse.Error(null, "The fields of Product are null")
+            NetworkResponse.Success(data)
         } catch (e: Exception) {
             NetworkResponse.Error(e, e.message ?: "An unexpected error occurred")
         }
