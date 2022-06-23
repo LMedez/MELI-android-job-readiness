@@ -13,8 +13,14 @@
     <string name="send_user">Enviar a Nombre de Usuario</string>
     <string name="search">Search</string>
     <string name="add_cart">Add to cart</string>
-    <string name="favorite">Favorite</string>
+    <string name="favorite">Favoritos</string>
     <string name="seller">Vendedor con identidad verificada</string>
     <string name="description">Descripción</string>
     <string name="query_check">The search shouldn\'t contains special character or start with a space</string>
+    <string name="notification">Notificaciones</string>
+    <string name="shopping">Mis compras</string>
+    <string name="menu">Más</string>
+    <string name="home">Inicio</string>
+    <string name="add_to_fav">Agregar a favoritos</string>
+    <string name="share">Compartir</string>
 </resources>

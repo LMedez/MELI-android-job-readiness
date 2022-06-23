@@ -60,7 +60,10 @@ class MainActivity : AppCompatActivity() {
 
         // Observe the status of the error message and show a SnackBar if exists
         searchViewModel.showError.observe(this) {
-            Snackbar.make(binding.root, it, Snackbar.LENGTH_SHORT).show()
+            Snackbar.make(binding.root, it, Snackbar.LENGTH_SHORT).apply {
+                anchorView = binding.bottomNavigation
+                show()
+            }
             binding.progressBar.visibility = View.INVISIBLE
         }
 

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -144,10 +145,10 @@
             </LinearLayout>
 
             <LinearLayout
+                android:paddingVertical="@dimen/grid_2"
                 android:id="@+id/linearLayout3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/grid_2"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
@@ -159,7 +160,7 @@
                     app:iconGravity="textStart"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Agregar a favoritos"
+                    android:text="@string/add_to_fav"
                     app:icon="@drawable/ic_favorite"
                     app:tint="?attr/colorSecondary" />
 
@@ -169,11 +170,10 @@
                     style="@style/Widget.App.Button.Text"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Compartir"
+                    android:text="@string/share"
                     app:icon="@drawable/ic_share"
                     app:iconGravity="textStart"
                     app:tint="?attr/colorSecondary" />
-
             </LinearLayout>
 
             <TextView
