@@ -17,7 +17,7 @@ object DataModel {
         val id: String,
         val title: String,
         val price: Double,
-        val thumbnail: String,
+        @SerializedName("secure_thumbnail") val thumbnail: String,
         val shipping: Shipping,
         var description: String,
         val pictures: List<Picture>,
