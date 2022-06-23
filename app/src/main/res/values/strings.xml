@@ -14,7 +14,8 @@
     <string name="search">Search</string>
     <string name="add_cart">Add to cart</string>
     <string name="favorite">Favoritos</string>
-    <string name="seller">Vendedor con identidad verificada</string>
+    <string name="seller">Vendedor con</string>
+    <string name="seller_verify">identidad verificada</string>
     <string name="description">Descripción</string>
     <string name="query_check">The search shouldn\'t contains special character or start with a space</string>
     <string name="notification">Notificaciones</string>
