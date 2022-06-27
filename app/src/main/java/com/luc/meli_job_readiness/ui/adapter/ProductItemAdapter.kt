@@ -23,12 +23,18 @@ class ProductItemAdapter : RecyclerView.Adapter<ProductItemAdapter.ViewHolder>()
     // A lambda function that is invoked for the onClickListener event of the root view
     private var onItemClickListener: ((DataModel.Product) -> Unit)? = null
 
+    private var onFavClickListener: ((String) -> Unit)? = null
+
     /**
      * Handle the click event with a provided lambda function
      * Params: a lambda function with the Product selected as parameter
      */
     fun setItemClickListener(listener: (DataModel.Product) -> Unit) {
         onItemClickListener = listener
+    }
+
+    fun setFavClickListener(listener: (String) -> Unit) {
+        onFavClickListener = listener
     }
 
     /**
@@ -55,6 +61,9 @@ class ProductItemAdapter : RecyclerView.Adapter<ProductItemAdapter.ViewHolder>()
             // Start the fav animation in ImageButton click listener
             favIB.setOnClickListener {
                 favIB.startFavAnimation()
+                onFavClickListener?.let { click ->
+                    click(product.id)
+                }
             }
 
             // Show the free shipping TextView if is free, otherwise hide the TextView

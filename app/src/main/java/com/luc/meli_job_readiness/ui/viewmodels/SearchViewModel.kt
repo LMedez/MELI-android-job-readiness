@@ -6,11 +6,11 @@ import com.luc.meli_job_readiness.data.service.LocalStorageService
 import com.luc.meli_job_readiness.data.service.NetworkResponse
 import com.luc.meli_job_readiness.data.service.ProductServiceImpl
 import com.luc.meli_job_readiness.domain.ProductRepository
-import com.luc.meli_job_readiness.domain.SearchRepository
+import com.luc.meli_job_readiness.domain.LocalRepository
 
 class SearchViewModel constructor(
     private val productRepository: ProductRepository,
-    private val searchRepository: SearchRepository
+    private val localRepository: LocalRepository
 ) : ViewModel() {
 
     /**
@@ -64,12 +64,22 @@ class SearchViewModel constructor(
      * Get the list of searched items by the user
      * Returns a list of user queries
      */
-    fun getUserSearchList() = searchRepository.getUserSearch()?.toList() ?: listOf()
+    fun getUserSearchList() = localRepository.getUserSearch()?.toList() ?: listOf()
 
     /**
      * Save the user query search in local
      */
-    fun saveUserSearch(query: String) = searchRepository.saveUserSearch(query)
+    fun saveUserSearch(query: String) = localRepository.saveUserSearch(query)
+
+    /**
+     * Get the user favorite product list
+     */
+    fun getUserFavProduct() = localRepository.getFavoriteProducts()?.toList() ?: listOf()
+
+    /**
+     * Save the user favorite product id
+     */
+    fun saveUserFavProduct(productId:String) = localRepository.saveFavoriteProduct(productId)
 }
 
 /**
@@ -79,7 +89,7 @@ class SearchViewModelFactory(private val context: Context) : ViewModelProvider.F
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return SearchViewModel(
             ProductRepository(ProductServiceImpl()),
-            SearchRepository(LocalStorageService(context))
+            LocalRepository(LocalStorageService(context))
         ) as T
     }
 }

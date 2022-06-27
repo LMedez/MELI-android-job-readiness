@@ -44,6 +44,11 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent, bundle)
         }
 
+        // Add user favorite product to local storage
+        adapter.setFavClickListener {
+            searchViewModel.saveUserSearch(it)
+        }
+
         searchViewModel.category.postValue("notebook")
 
         // Observe the product list and set the adapter with the list
